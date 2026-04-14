@@ -2,7 +2,7 @@
 
 ### Requirement: Toast container element
 
-The plugin SHALL render a fixed-position container element that holds all visible toast notifications and reflects the current contents of the `wp-toast` store. The container SHALL use `role="status"` and `aria-live="polite"` for accessibility.
+The plugin SHALL render a fixed-position container element that holds all visible toast notifications and reflects the current contents of the `wp-tosuto` store. The container SHALL use `role="status"` and `aria-live="polite"` for accessibility.
 
 #### Scenario: Container is present on page
 
@@ -11,9 +11,9 @@ The plugin SHALL render a fixed-position container element that holds all visibl
 
 ### Requirement: Automatic late rendering
 
-The plugin SHALL emit the toaster block automatically on `wp_footer` at a late priority. Emission SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, emission SHALL be gated by the `wp_toast_render_empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
+The plugin SHALL emit the toaster block automatically on `wp_footer` at a late priority. Emission SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, emission SHALL be gated by the `wp_tosuto_render_empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
 
-The `wp_toast_render_empty` filter value SHALL be interpreted as follows:
+The `wp_tosuto_render_empty` filter value SHALL be interpreted as follows:
 
 - `true` — render an empty container.
 - `false` — do not render anything.
@@ -22,25 +22,25 @@ The `wp_toast_render_empty` filter value SHALL be interpreted as follows:
 
 #### Scenario: Page with queued toast always renders container
 
-- **WHEN** a call to `wp_toast()` has queued at least one toast earlier in the request
-- **THEN** on `wp_footer` the plugin emits the `wp-toast/toaster` block exactly once regardless of the `wp_toast_render_empty` filter, and the resulting container is present in the rendered DOM
+- **WHEN** a call to `wp_tosuto()` has queued at least one toast earlier in the request
+- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block exactly once regardless of the `wp_tosuto_render_empty` filter, and the resulting container is present in the rendered DOM
 
 #### Scenario: Empty queue with default filter renders empty container
 
-- **WHEN** no call to `wp_toast()` happens during the request
-- **AND** no code overrides the `wp_toast_render_empty` filter
-- **THEN** on `wp_footer` the plugin emits the `wp-toast/toaster` block, an empty container is present in the rendered DOM, and the `wp-toast` view script module and stylesheet are enqueued so runtime `actions.add()` calls can mount into it
+- **WHEN** no call to `wp_tosuto()` happens during the request
+- **AND** no code overrides the `wp_tosuto_render_empty` filter
+- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block, an empty container is present in the rendered DOM, and the `wp-tosuto` view script module and stylesheet are enqueued so runtime `actions.add()` calls can mount into it
 
 #### Scenario: Empty queue with filter set to false renders nothing
 
-- **WHEN** no call to `wp_toast()` happens during the request
-- **AND** a filter on `wp_toast_render_empty` returns `false`
-- **THEN** the plugin does not emit the toaster block, no container element is present in the rendered DOM, and no `wp-toast` view script module or stylesheet is enqueued
+- **WHEN** no call to `wp_tosuto()` happens during the request
+- **AND** a filter on `wp_tosuto_render_empty` returns `false`
+- **THEN** the plugin does not emit the toaster block, no container element is present in the rendered DOM, and no `wp-tosuto` view script module or stylesheet is enqueued
 
 #### Scenario: Empty queue with template-tag callable filter
 
-- **WHEN** no call to `wp_toast()` happens during the request
-- **AND** a filter on `wp_toast_render_empty` returns the string `'is_singular'`
+- **WHEN** no call to `wp_tosuto()` happens during the request
+- **AND** a filter on `wp_tosuto_render_empty` returns the string `'is_singular'`
 - **THEN** the plugin invokes `is_singular()` with no arguments and, if it returns `true`, emits an empty container; if it returns `false`, emits nothing
 
 ### Requirement: Single container instance
@@ -64,12 +64,12 @@ Each toast in `state.toasts` SHALL be rendered as a child element of the contain
 #### Scenario: Toast applies variant class
 
 - **WHEN** a toast with `variant: 'error'` is in the store
-- **THEN** the toast item element has a CSS class `wp-toast--error`
+- **THEN** the toast item element has a CSS class `wp-tosuto--error`
 
 #### Scenario: Dismissable toast apply dismissable class
 
 - **WHEN** a toast with `dismissable: true` is in the store
-- **THEN** the toast item element has a CSS class `wp-toast--dismissable`
+- **THEN** the toast item element has a CSS class `wp-tosuto--dismissable`
 
 #### Scenario: Dismissable toast shows close button
 
@@ -152,18 +152,18 @@ The toast container SHALL support a `data-position` attribute with values: `top-
 
 ### Requirement: CSS custom properties for theming
 
-The toast component SHALL expose CSS custom properties for its visual tokens — at minimum `--wp-toast-bg`, `--wp-toast-fg`, `--wp-toast-border`, `--wp-toast-radius`, `--wp-toast-shadow`, `--wp-toast-font-size`, `--wp-toast-padding`, `--wp-toast-gap`, and `--wp-toast-z-index` — so that themes can override any of them without touching the plugin's CSS.
+The toast component SHALL expose CSS custom properties for its visual tokens — at minimum `--wp-tosuto-bg`, `--wp-tosuto-fg`, `--wp-tosuto-border`, `--wp-tosuto-radius`, `--wp-tosuto-shadow`, `--wp-tosuto-font-size`, `--wp-tosuto-padding`, `--wp-tosuto-gap`, and `--wp-tosuto-z-index` — so that themes can override any of them without touching the plugin's CSS.
 
 #### Scenario: Theme overrides custom property
 
-- **WHEN** a theme sets `--wp-toast-bg: #1a1a1a` on `:root`
+- **WHEN** a theme sets `--wp-tosuto-bg: #1a1a1a` on `:root`
 - **THEN** all toast items render with the `#1a1a1a` background color
 
 ### Requirement: Stacking layout
 
-Multiple visible toasts SHALL stack vertically with a gap controlled by `--wp-toast-gap`. Newer toasts SHALL appear at the edge closest to the viewport edge (bottom for bottom positions, top for top positions).
+Multiple visible toasts SHALL stack vertically with a gap controlled by `--wp-tosuto-gap`. Newer toasts SHALL appear at the edge closest to the viewport edge (bottom for bottom positions, top for top positions).
 
 #### Scenario: Three toasts stack with gap
 
 - **WHEN** three toasts are visible simultaneously
-- **THEN** they are stacked vertically with the gap value from `--wp-toast-gap` between them
+- **THEN** they are stacked vertically with the gap value from `--wp-tosuto-gap` between them

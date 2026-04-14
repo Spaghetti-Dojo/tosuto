@@ -2,12 +2,12 @@
 
 ### Requirement: Store namespace registration
 
-The plugin SHALL register an Interactivity API store under the `wp-toast` namespace.
+The plugin SHALL register an Interactivity API store under the `wp-tosuto` namespace.
 
 #### Scenario: Store is available after hydration
 
 - **WHEN** a page containing the toaster block has finished hydrating in the browser
-- **THEN** the `wp-toast` store is accessible via `store('wp-toast')` from any Interactivity API module
+- **THEN** the `wp-tosuto` store is accessible via `store('wp-tosuto')` from any Interactivity API module
 
 ### Requirement: Toast state structure
 
@@ -76,7 +76,7 @@ The store SHALL expose `actions.pauseTimer(id)` and `actions.resumeTimer(id)` ac
 
 ### Requirement: Timer initialization for server-hydrated toasts
 
-When the `wp-toast` store is first hydrated and `state.toasts` already contains toasts (for example, toasts queued server-side by `wp_toast()`), auto-dismiss timers SHALL be started for any such toast with `duration > 0`.
+When the `wp-tosuto` store is first hydrated and `state.toasts` already contains toasts (for example, toasts queued server-side by `wp_tosuto()`), auto-dismiss timers SHALL be started for any such toast with `duration > 0`.
 
 #### Scenario: Hydrated toasts auto-dismiss
 
