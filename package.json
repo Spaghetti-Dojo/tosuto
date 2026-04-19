@@ -20,6 +20,8 @@
 		"pnpm": ">=10.0.0"
 	},
 	"dependencies": {
+		"@wordpress/interactivity": "wp-6.9",
+		"dompurify": "^3.2.0"
 	},
 	"devDependencies": {
 		"@types/node": "^24.0.0",
@@ -37,9 +39,9 @@
 	},
 	"scripts": {
 		"env": "wp-env",
-		"start": "wp-scripts start",
-		"build": "wp-scripts build",
-		"build:dev": "wp-scripts start",
+		"start": "WP_SRC_DIRECTORY=sources/client wp-scripts start",
+		"build": "WP_SRC_DIRECTORY=sources/client wp-scripts build",
+		"build:dev": "WP_SRC_DIRECTORY=sources/client wp-scripts start",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css:fix": "wp-scripts lint-style --fix",
 		"lint:js": "wp-scripts lint-js",

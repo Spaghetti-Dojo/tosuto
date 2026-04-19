@@ -2,7 +2,7 @@
 <ruleset name="Tosuto">
 	<description>PHP Coding Standards for this project</description>
 
-	<file>./inc/</file>
+	<file>./wp-tosuto.php</file>
 	<file>./sources/</file>
 
 	<arg value="sp"/>

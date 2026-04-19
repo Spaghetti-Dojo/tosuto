@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-tosuto/toaster",
+	"version": "0.1.0",
+	"title": "Toaster",
+	"category": "widgets",
+	"description": "A runtime toast notification container rendered via the Interactivity API.",
+	"textdomain": "wp-tosuto",
+	"supports": {
+		"html": false,
+		"inserter": false
+	},
+	"attributes": {
+		"position": {
+			"type": "string",
+			"default": "bottom-right",
+			"enum": [
+				"top-left",
+				"top-right",
+				"bottom-left",
+				"bottom-right",
+				"top-center",
+				"bottom-center"
+			]
+		}
+	},
+	"viewScriptModule": "file:./view.js",
+	"style": "file:./style-index.css",
+	"render": "file:../../server/Toaster/render.php"
+}

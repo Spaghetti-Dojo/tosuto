@@ -1,7 +1,7 @@
 {
-	"name": "",
-	"description": "",
-	"type": "",
+	"name": "spaghetti-dojo/wp-tosuto",
+	"description": "A WordPress plugin exposing an API to render toast components via the Interactivity API.",
+	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -28,17 +28,14 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"": "sources/server/"
-		},
-		"files": [
-			"inc/package.php"
-		]
+			"SpaghettiDojo\\Tosuto\\": "sources/server/"
+		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"": "tests/",
-			"": "tests/unit/server",
-			"": "tests/integration/server"
+			"SpaghettiDojo\\Tosuto\\Tests\\": "tests/",
+			"SpaghettiDojo\\Tosuto\\Tests\\Unit\\": "tests/unit/server/",
+			"SpaghettiDojo\\Tosuto\\Tests\\Integration\\": "tests/integration/server/"
 		}
 	},
 	"scripts": {
@@ -58,8 +55,8 @@
 			"@analysis",
 			"@tests"
 		],
-		"post-install-cmd": "\\Tests\\InstallWpDropIn::copy",
-		"post-update-cmd": "\\Tests\\InstallWpDropIn::copy"
+		"post-install-cmd": "SpaghettiDojo\\Tosuto\\Tests\\InstallWpDropIn::copy",
+		"post-update-cmd": "SpaghettiDojo\\Tosuto\\Tests\\InstallWpDropIn::copy"
 	},
 	"config": {
 		"allow-plugins": {

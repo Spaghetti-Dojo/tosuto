@@ -1,12 +1,12 @@
 ## 1. Plugin Scaffold
 
-- [ ] 1.1 Create plugin directory structure with only two source roots: `wp-tosuto/sources/client/` (SCSS, JS/TS sources) and `wp-tosuto/sources/server/` (PHP modules)
-- [ ] 1.2 Create `composer.json` with `inpsyde/modularity` dependency and PSR-4 autoload mapping the plugin root namespace to `sources/server/`
-- [ ] 1.3 Run `composer install` to generate `vendor/autoload.php`
-- [ ] 1.4 Create main plugin file `wp-tosuto.php` with plugin headers (Name, Description, Version, Requires at least: 6.9, Requires PHP: 8.0, Text Domain: wp-tosuto), require `vendor/autoload.php`, create `Package::new()`, register all modules via `addModule()`, and call `boot()`
-- [ ] 1.5 Create Module classes in each `sources/server/` subdirectory (e.g., `sources/server/Toaster/Module.php` for block registration and render, `sources/server/TosutoApi/Module.php` for the `wp_tosuto()` helper) implementing the appropriate Inpsyde Modularity interfaces (`ServiceModule`, `ExecutableModule`)
-- [ ] 1.6 Create `package.json` with `@wordpress/scripts`, `@wordpress/interactivity`, and `dompurify` dependencies; configure the build to read from `sources/client/` instead of the default `src/`
-- [ ] 1.7 Create `block.json` for the toaster block (under `sources/client/toaster/` with `viewScriptModule`, `style`, and `"render": "file:../../server/Toaster/render.php"`, or whichever co-location the build tooling supports)
+- [x] 1.1 Create plugin directory structure with only two source roots: `wp-tosuto/sources/client/` (SCSS, JS/TS sources) and `wp-tosuto/sources/server/` (PHP modules)
+- [x] 1.2 Create `composer.json` with `inpsyde/modularity` dependency and PSR-4 autoload mapping the plugin root namespace to `sources/server/`
+- [x] 1.3 Run `composer install` to generate `vendor/autoload.php`
+- [x] 1.4 Create main plugin file `wp-tosuto.php` with plugin headers (Name, Description, Version, Requires at least: 6.9, Requires PHP: 8.4, Text Domain: wp-tosuto), require `vendor/autoload.php`, create `Package::new()`, register all modules via `addModule()`, and call `boot()`
+- [x] 1.5 Create Module classes in each `sources/server/` subdirectory (e.g., `sources/server/Toaster/Module.php` for block registration and render, `sources/server/Api/Module.php` for the `wp_tosuto()` helper) implementing the appropriate Inpsyde Modularity interfaces (`ServiceModule`, `ExecutableModule`)
+- [x] 1.6 Create `package.json` with `@wordpress/scripts`, `@wordpress/interactivity`, and `dompurify` dependencies; configure the build to read from `sources/client/` instead of the default `src/`
+- [x] 1.7 Create `block.json` for the toaster block (under `sources/client/toaster/` with `viewScriptModule`, `style`, and `"render": "file:../../server/Toaster/render.php"`, or whichever co-location the build tooling supports)
 
 ## 2. Interactivity API Store (tosuto-store)
 
@@ -35,9 +35,9 @@
 
 ## 5. PHP API (tosuto-api)
 
-- [ ] 5.1 In the `TosutoApi` module, implement `wp_tosuto(string $content, array $options = []): string` — generate a UUID via `wp_generate_uuid4()`, apply defaults (`variant: 'default'`, `duration: 5000`, `dismissable: true`) for omitted options, sanitize `$content` via `wp_kses_post()` before storing, append the fully-formed entry to a static request-scoped queue, and return the id
-- [ ] 5.2 In the `TosutoApi` module, implement `wp_tosuto_remove(string $id): bool` — remove a previously-queued entry from the same static queue and return whether anything was removed
-- [ ] 5.3 In the `TosutoApi` module, hook into `wp_footer` at a late priority. If the queue is non-empty, call `wp_interactivity_state('wp-tosuto', ['toasts' => $queue])` and then emit the toaster block via `do_blocks('<!-- wp:wp-tosuto/toaster /-->')`. No defaulting or id assignment happens here; the queue is already final
+- [ ] 5.1 In the `Api` module, implement `wp_tosuto(string $content, array $options = []): string` — generate a UUID via `wp_generate_uuid4()`, apply defaults (`variant: 'default'`, `duration: 5000`, `dismissable: true`) for omitted options, sanitize `$content` via `wp_kses_post()` before storing, append the fully-formed entry to a static request-scoped queue, and return the id
+- [ ] 5.2 In the `Api` module, implement `wp_tosuto_remove(string $id): bool` — remove a previously-queued entry from the same static queue and return whether anything was removed
+- [ ] 5.3 In the `Api` module, hook into `wp_footer` at a late priority. If the queue is non-empty, call `wp_interactivity_state('wp-tosuto', ['toasts' => $queue])` and then emit the toaster block via `do_blocks('<!-- wp:wp-tosuto/toaster /-->')`. No defaulting or id assignment happens here; the queue is already final
 - [ ] 5.4 In the same `wp_footer` hook, when the queue is empty, apply the `wp_tosuto_render_empty` filter (default `true`) and resolve its value: `true` → emit the toaster block; `false` → emit nothing; `is_callable(...)` → `call_user_func()` it with no arguments and use the coerced-to-bool result (so `'is_singular'`, `'is_single'`, `'is_post_type_archive'`, or a closure can all be passed); any other value → coerce to bool. When the resolved decision is "do not emit", neither `wp_interactivity_state()` nor `do_blocks()` runs, so no `wp-tosuto` view script module or stylesheet is enqueued
 - [ ] 5.5 Document the `wp_tosuto_render_empty` filter in the plugin's inline PHPDoc on the hook site, including the four accepted value shapes and the intent that callables are treated as template-tag-style conditionals invoked with no arguments
 
