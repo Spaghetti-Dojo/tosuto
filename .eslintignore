@@ -1,0 +1,8 @@
+.*
+/.github/
+/vendor
+/node_modules
+/dist/
+*.config.js
+*.config.ts
+.prettierrc.js

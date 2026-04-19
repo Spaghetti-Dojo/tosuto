@@ -79,7 +79,7 @@ Provide a structured summary:
 - **Conflicting auto-fix results**: If auto-fix introduces new errors, revert the auto-fix for that file and fix manually (or better if too complex to fix, just report it).
 - **Suppressed rules**: If a `stylelint-disable` comment is needed, always include the specific rule name and a brief justification comment
 
-**Update your agent memory** as you discover recurring SCSS patterns, common lint violations, design token usage conventions, and architectural decisions specific to the Burokku theme. This builds institutional knowledge across conversations.
+**Update your agent memory** as you discover recurring SCSS patterns, common lint violations, design token usage conventions, and architectural decisions specific to project. This builds institutional knowledge across conversations.
 
 Examples of what to record:
 - Frequently violated Stylelint rules and their typical fixes in this project
