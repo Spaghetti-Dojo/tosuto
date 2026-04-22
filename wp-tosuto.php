@@ -28,8 +28,8 @@ add_action(
     'plugins_loaded',
     static function (): void {
         Package::new(PluginProperties::new(__FILE__))
-            ->addModule(new Toaster\Module())
-            ->addModule(new Api\Module())
+            ->addModule(Toaster\Module::new())
+            ->addModule(Api\Module::new())
             ->boot();
     }
 );

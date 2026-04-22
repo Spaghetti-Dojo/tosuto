@@ -12,6 +12,15 @@ final class Module implements ExecutableModule
 {
     use ModuleClassNameIdTrait;
 
+    public static function new(): self
+    {
+        return new self();
+    }
+
+    private function __construct()
+    {
+    }
+
     public function run(ContainerInterface $container): bool
     {
         return true;

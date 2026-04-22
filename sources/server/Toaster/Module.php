@@ -10,10 +10,21 @@ use Psr\Container\ContainerInterface;
 
 final class Module implements ExecutableModule
 {
-    use ModuleClassNameIdTrait;
+	use ModuleClassNameIdTrait;
 
-    public function run(ContainerInterface $container): bool
-    {
-        return true;
-    }
+	public static function new(): self
+	{
+		return new self();
+	}
+
+	private function __construct()
+	{
+	}
+
+	public function run( ContainerInterface $container ): bool
+	{
+		BlockRegistrar::new()->init();
+
+		return true;
+	}
 }

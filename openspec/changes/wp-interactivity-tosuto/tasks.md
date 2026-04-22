@@ -25,14 +25,14 @@
 
 ## 3. Block Rendering (tosuto-renderer)
 
-- [ ] 3.1 Create `sources/server/Toaster/render.php` — render the toast container `<div>` with `data-wp-interactive="wp-tosuto"`, `role="status"`, `aria-live="polite"`, fixed positioning, and `data-wp-each` for toast items
-- [ ] 3.2 Add single-instance guard in the render file — use static flag to prevent duplicate containers
-- [ ] 3.3 Add toast item template inside `<template data-wp-each="state.toasts">` — write `content` via the `data-wp-tosuto--html` custom directive (the single HTML write site), bind the variant class, render the dismiss button conditionally on `dismissable`, and attach hover event directives
-- [ ] 3.4 Register blocks in the `Toaster` module via `wp_register_block_types_from_metadata_collection()` using the `blocks-manifest.php` in the build output directory
+- [x] 3.1 Create `sources/server/Toaster/render.php` — render the toast container `<div>` with `data-wp-interactive="wp-tosuto"`, `role="status"`, `aria-live="polite"`, fixed positioning, and `data-wp-each` for toast items
+- [x] 3.2 Add single-instance guard in the render file — use static flag to prevent duplicate containers
+- [x] 3.3 Add toast item template inside `<template data-wp-each="state.toasts">` — write `content` via the `data-wp-tosuto--html` custom directive (the single HTML write site), bind the variant class, render the dismiss button conditionally on `dismissable`, and attach hover event directives
+- [x] 3.4 Register blocks in the `Toaster` module via `wp_register_block_types_from_metadata_collection()` using the `blocks-manifest.php` in the build output directory
 
 ## 4. Styling
 
-- [ ] 4.1 Create `sources/client/toaster/style.scss` with base toast container styles (fixed position, flexbox column, z-index, gap)
+- [ ] 4.1 Create `sources/client/toaster/style.scss` with base toast contaiπner styles (fixed position, flexbox column, z-index, gap)
 - [ ] 4.2 Add CSS custom properties: `--wp-tosuto-bg`, `--wp-tosuto-fg`, `--wp-tosuto-border`, `--wp-tosuto-radius`, `--wp-tosuto-shadow`, `--wp-tosuto-font-size`, `--wp-tosuto-padding`, `--wp-tosuto-gap`, `--wp-tosuto-z-index`
 - [ ] 4.3 Add variant styles: `.wp-tosuto--default`, `.wp-tosuto--success`, `.wp-tosuto--error`, `.wp-tosuto--warning`, `.wp-tosuto--info` with variant-specific custom properties
 - [ ] 4.4 Add enter animation (slide-up + fade-in, 200ms) and exit animation (fade-out + slide-down, 150ms) using CSS keyframes

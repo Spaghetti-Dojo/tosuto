@@ -14,6 +14,23 @@ let timers = new TimerCollection();
 const { state, actions } = store( 'wp-tosuto', {
 	state: {
 		toasts: new Map< ToastId, Toast >(),
+		get toastItems(): Array< { toastId: ToastId } > {
+			return [ ...state.toasts.keys() ].map( toastId => ( { toastId } ) );
+		},
+		get toastVariantClass(): string {
+			const { toastId } = getContext< { toastId: ToastId } >();
+			const toast = state.toasts.get( toastId );
+			if ( ! toast ) return 'wp-tosuto__item';
+			const classes = [ 'wp-tosuto__item', `wp-tosuto--${ toast.variant }` ];
+			if ( toast.dismissable ) {
+				classes.push( 'wp-tosuto--dismissable' );
+			}
+			return classes.join( ' ' );
+		},
+		get isDismissable(): boolean {
+			const { toastId } = getContext< { toastId: ToastId } >();
+			return state.toasts.get( toastId )?.dismissable ?? false;
+		},
 	},
 	actions: {
 		add( content: string, options: RawToast = {} ): ToastId {
@@ -56,6 +73,18 @@ const { state, actions } = store( 'wp-tosuto', {
 			if ( ref ) {
 				ref.innerHTML = toast?.content ?? '';
 			}
+		},
+		dismiss(): void {
+			const { toastId } = getContext< { toastId: ToastId } >();
+			actions.remove( toastId );
+		},
+		pauseToast(): void {
+			const { toastId } = getContext< { toastId: ToastId } >();
+			actions.pauseTimer( toastId );
+		},
+		resumeToast(): void {
+			const { toastId } = getContext< { toastId: ToastId } >();
+			actions.resumeTimer( toastId );
 		},
 	},
 } );

@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+static $rendered = false;
+
+if ( $rendered ) {
+	return;
+}
+
+$rendered = true;
+
+$position = $attributes['position'] ?? 'bottom-right';
+?>
+<div
+	class="wp-tosuto"
+	data-wp-interactive="wp-tosuto"
+	data-wp-init="callbacks.init"
+	role="status"
+	aria-live="polite"
+	aria-atomic="false"
+	data-position="<?= esc_attr( $position ) ?>"
+>
+	<template data-wp-each="state.toastItems">
+		<div
+			class="wp-tosuto__item"
+			data-wp-key="context.toastId"
+			data-wp-bind--class="state.toastVariantClass"
+			data-wp-on--mouseenter="callbacks.pauseToast"
+			data-wp-on--mouseleave="callbacks.resumeToast"
+		>
+			<div
+				class="wp-tosuto__content"
+				data-wp-watch="callbacks.renderContent"
+			></div>
+			<button
+				class="wp-tosuto__dismiss"
+				type="button"
+				aria-label="<?php esc_attr_e( 'Dismiss notification', 'wp-tosuto' ) ?>"
+				data-wp-if="state.isDismissable"
+				data-wp-on--click="callbacks.dismiss"
+			>
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	</template>
+</div>
