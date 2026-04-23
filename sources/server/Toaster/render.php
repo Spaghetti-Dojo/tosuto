@@ -37,7 +37,7 @@ $position = $attributes['position'] ?? 'bottom-right';
 				class="wp-tosuto__dismiss"
 				type="button"
 				aria-label="<?php esc_attr_e( 'Dismiss notification', 'wp-tosuto' ) ?>"
-				data-wp-if="state.isDismissable"
+				data-wp-bind--hidden="!state.isDismissable"
 				data-wp-on--click="callbacks.dismiss"
 			>
 				<span aria-hidden="true">&times;</span>
