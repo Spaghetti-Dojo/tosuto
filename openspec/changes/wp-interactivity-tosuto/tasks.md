@@ -32,11 +32,11 @@
 
 ## 4. Styling
 
-- [ ] 4.1 Create `sources/client/toaster/style.scss` with base toast contaiπner styles (fixed position, flexbox column, z-index, gap)
-- [ ] 4.2 Add CSS custom properties: `--wp-tosuto-bg`, `--wp-tosuto-fg`, `--wp-tosuto-border`, `--wp-tosuto-radius`, `--wp-tosuto-shadow`, `--wp-tosuto-font-size`, `--wp-tosuto-padding`, `--wp-tosuto-gap`, `--wp-tosuto-z-index`
-- [ ] 4.3 Add variant styles: `.wp-tosuto--default`, `.wp-tosuto--success`, `.wp-tosuto--error`, `.wp-tosuto--warning`, `.wp-tosuto--info` with variant-specific custom properties
-- [ ] 4.4 Add enter animation (slide-up + fade-in, 200ms) and exit animation (fade-out + slide-down, 150ms) using CSS keyframes
-- [ ] 4.5 Add position variants via `[data-position]` attribute selector: `top-left`, `top-right`, `bottom-left`, `bottom-right`, `top-center`, `bottom-center`
+- [x] 4.1 Create `sources/client/toaster/style.scss` with base toast contaiπner styles (fixed position, flexbox column, z-index, gap)
+- [x] 4.2 Add CSS custom properties: `--wp-tosuto-bg`, `--wp-tosuto-fg`, `--wp-tosuto-border`, `--wp-tosuto-radius`, `--wp-tosuto-shadow`, `--wp-tosuto-font-size`, `--wp-tosuto-padding`, `--wp-tosuto-gap`, `--wp-tosuto-z-index`
+- [x] 4.3 Add variant styles: `.wp-tosuto--default`, `.wp-tosuto--success`, `.wp-tosuto--error`, `.wp-tosuto--warning`, `.wp-tosuto--info` with variant-specific custom properties
+- [x] 4.4 Add enter animation (slide-up + fade-in, 200ms) and exit animation (fade-out + slide-down, 150ms) using CSS keyframes
+- [x] 4.5 Add position variants via `[data-position]` attribute selector: `top-left`, `top-right`, `bottom-left`, `bottom-right`, `top-center`, `bottom-center`
 
 ## 5. PHP API (tosuto-api)
 
