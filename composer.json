@@ -29,7 +29,10 @@
 	"autoload": {
 		"psr-4": {
 			"SpaghettiDojo\\Tosuto\\": "sources/server/"
-		}
+		},
+		"files": [
+			"sources/server/Api/functions.php"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {

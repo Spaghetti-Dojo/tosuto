@@ -11,9 +11,9 @@ The plugin SHALL render a fixed-position container element that holds all visibl
 
 ### Requirement: Automatic late rendering
 
-The plugin SHALL emit the toaster block automatically on `wp_footer` at a late priority. Emission SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, emission SHALL be gated by the `wp_tosuto_render_empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
+The plugin SHALL emit the toaster block automatically on `wp_footer` at a late priority. Emission SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, emission SHALL be gated by the `wp-tosuto.api.render-empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
 
-The `wp_tosuto_render_empty` filter value SHALL be interpreted as follows:
+The `wp-tosuto.api.render-empty` filter value SHALL be interpreted as follows:
 
 - `true` — render an empty container.
 - `false` — do not render anything.
@@ -23,24 +23,24 @@ The `wp_tosuto_render_empty` filter value SHALL be interpreted as follows:
 #### Scenario: Page with queued toast always renders container
 
 - **WHEN** a call to `wp_tosuto()` has queued at least one toast earlier in the request
-- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block exactly once regardless of the `wp_tosuto_render_empty` filter, and the resulting container is present in the rendered DOM
+- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block exactly once regardless of the `wp-tosuto.api.render-empty` filter, and the resulting container is present in the rendered DOM
 
 #### Scenario: Empty queue with default filter renders empty container
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
-- **AND** no code overrides the `wp_tosuto_render_empty` filter
+- **AND** no code overrides the `wp-tosuto.api.render-empty` filter
 - **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block, an empty container is present in the rendered DOM, and the `wp-tosuto` view script module and stylesheet are enqueued so runtime `actions.add()` calls can mount into it
 
 #### Scenario: Empty queue with filter set to false renders nothing
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
-- **AND** a filter on `wp_tosuto_render_empty` returns `false`
+- **AND** a filter on `wp-tosuto.api.render-empty` returns `false`
 - **THEN** the plugin does not emit the toaster block, no container element is present in the rendered DOM, and no `wp-tosuto` view script module or stylesheet is enqueued
 
 #### Scenario: Empty queue with template-tag callable filter
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
-- **AND** a filter on `wp_tosuto_render_empty` returns the string `'is_singular'`
+- **AND** a filter on `wp-tosuto.api.render-empty` returns the string `'is_singular'`
 - **THEN** the plugin invokes `is_singular()` with no arguments and, if it returns `true`, emits an empty container; if it returns `false`, emits nothing
 
 ### Requirement: Single container instance

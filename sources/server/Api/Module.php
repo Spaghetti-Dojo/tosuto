@@ -23,6 +23,8 @@ final class Module implements ExecutableModule
 
     public function run(ContainerInterface $container): bool
     {
+        Renderer::new()->init();
+
         return true;
     }
 }

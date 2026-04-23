@@ -12,6 +12,14 @@
 	<rule ref="Syde"/>
 
 	<!--
+		The Api/functions.php file intentionally declares global functions
+		(wp_tosuto, wp_tosuto_remove) as public API entry points for plugin consumers.
+	-->
+	<rule ref="Syde.Functions.DisallowGlobalFunction">
+		<exclude-pattern>sources/server/Api/functions.php</exclude-pattern>
+	</rule>
+
+	<!--
 		Syde enforces camelCase for variable names, but WordPress convention uses snake_case.
 		Prefer WordPress naming conventions for variables.
 	-->

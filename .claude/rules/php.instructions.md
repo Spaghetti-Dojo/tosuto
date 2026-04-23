@@ -1,6 +1,6 @@
 ---
 paths:
-  - "sources/server/**/*.php"
+    - 'sources/server/**/*.php'
 ---
 
 # PHP Server Instructions
@@ -19,28 +19,28 @@ The following instructions are applicable to all php files in this repository.
 Apply SOLID principles within WordPress conventions:
 
 1. **Single Responsibility Principle (SRP)**
-   - Each PHP class/function should have one clear purpose
-   - Separate concerns: data handling, rendering, business logic.
+    - Each PHP class/function should have one clear purpose
+    - Separate concerns: data handling, rendering, business logic.
 
 2. **Open/Closed Principle (OCP)**
-   - Use WordPress hooks (actions/filters) for extensibility
-   - Design functions to be extended via filters without modification
-   - Leverage WordPress plugin API for customization points
+    - Use WordPress hooks (actions/filters) for extensibility
+    - Design functions to be extended via filters without modification
+    - Leverage WordPress plugin API for customization points
 
 3. **Liskov Substitution Principle (LSP)**
-   - Ensure child classes/implementations can replace parents
-   - Maintain consistent interfaces when extending WordPress classes
-   - Type hints should be honored by implementations
+    - Ensure child classes/implementations can replace parents
+    - Maintain consistent interfaces when extending WordPress classes
+    - Type hints should be honored by implementations
 
 4. **Interface Segregation Principle (ISP)**
-   - Keep interfaces focused and minimal
-   - Don't force classes to depend on unused methods
-   - Use PHP interfaces for contract definitions
+    - Keep interfaces focused and minimal
+    - Don't force classes to depend on unused methods
+    - Use PHP interfaces for contract definitions
 
 5. **Dependency Inversion Principle (DIP)**
-   - Depend on abstractions, not concrete implementations
-   - Use dependency injection where appropriate
-   - Pass dependencies via constructors or factory patterns
+    - Depend on abstractions, not concrete implementations
+    - Use dependency injection where appropriate
+    - Pass dependencies via constructors or factory patterns
 
 ### Additional Principles
 
@@ -52,6 +52,7 @@ Apply SOLID principles within WordPress conventions:
 ## PHP QA Agent
 
 **Always delegate PHP quality fix tasks to the `php-qa-fixer` agent.** This applies whenever:
+
 - `composer cs` or `composer analysis` report errors or warnings
 - PHP files have been written or modified and need QA verification
 - The user asks to fix, clean up, or check PHP code quality
@@ -68,41 +69,41 @@ Do not handle PHP QA fixes inline — always use the agent.
 
 - **Avoid redundant intermediary variables.** When a value is being built up through conditions, reuse the same variable throughout rather than introducing a separate "raw" or "initial" variable. A variable like `$raw_version` that only exists to seed `$version` adds noise without clarity — just mutate `$version` directly.
 
-  ```php
-  // Bad
-  $raw_version = get_option('theme_version', false);
-  $version = $raw_version ?: wp_get_theme()->get('Version');
+    ```php
+    // Bad
+    $raw_version = get_option('theme_version', false);
+    $version = $raw_version ?: wp_get_theme()->get('Version');
 
-  // Good
-  $version = get_option('theme_version', false);
-  $version = $version ?: wp_get_theme()->get('Version');
-  ```
+    // Good
+    $version = get_option('theme_version', false);
+    $version = $version ?: wp_get_theme()->get('Version');
+    ```
 
 - **Extract private methods for multi-step value construction.** When building a value through several conditions or transformations inside a method, extract the logic into a dedicated `private` method. This keeps the calling method readable and gives the construction logic a named home.
 
-  ```php
-  // Instead of inline conditional chains in a public method:
-  public function assetVersion(): string
-  {
-      $version = get_option('theme_version', false);
-      $version = $version ?: wp_get_theme()->get('Version');
-      $version = is_string($version) ? $version : '0.0.0';
-      return $version;
-  }
+    ```php
+    // Instead of inline conditional chains in a public method:
+    public function assetVersion(): string
+    {
+        $version = get_option('theme_version', false);
+        $version = $version ?: wp_get_theme()->get('Version');
+        $version = is_string($version) ? $version : '0.0.0';
+        return $version;
+    }
 
-  // Prefer:
-  public function assetVersion(): string
-  {
-      return $this->resolveVersion();
-  }
+    // Prefer:
+    public function assetVersion(): string
+    {
+        return $this->resolveVersion();
+    }
 
-  private function resolveVersion(): string
-  {
-      $version = get_option('theme_version', false);
-      $version = $version ?: wp_get_theme()->get('Version');
-      return is_string($version) ? $version : '0.0.0';
-  }
-  ```
+    private function resolveVersion(): string
+    {
+        $version = get_option('theme_version', false);
+        $version = $version ?: wp_get_theme()->get('Version');
+        return is_string($version) ? $version : '0.0.0';
+    }
+    ```
 
 ## Namespaces
 
@@ -118,3 +119,10 @@ use Vendor\Package\{
 	Namespace\SubNamespace\ClassC
 };
 ```
+
+## Class Methods
+
+- Prefer early returns to reduce nesting and improve readability
+- Prefer one condition per `if` statement for clarity, even if you have to create multipe `if` statements instead of combining conditions with `&&` or `||`. But apply this logically, if conditions are closely related because belonging to the same scope, it canbe fine.
+- When a method has multiple responsibilities, consider extracting private methods to handle specific tasks
+- Keep public methods focused on orchestrating behavior, while private methods handle the details of specific operations
