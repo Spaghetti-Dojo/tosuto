@@ -26,7 +26,5 @@ This project is licensed under [GPL v2 or later](https://www.gnu.org/licenses/gp
 
 ## 🔗 Links
 
-- **Repository:**
-- **Issues:**
-- **Project Board:**
-- **Milestones:**
+- **Repository:** https://github.com/Spaghetti-Dojo/tosuto
+- **Issues:** https://github.com/Spaghetti-Dojo/tosuto/issues
