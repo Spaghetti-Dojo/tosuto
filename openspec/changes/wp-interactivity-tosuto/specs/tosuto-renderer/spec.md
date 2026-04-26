@@ -6,12 +6,12 @@ The plugin SHALL render a fixed-position container element that holds all visibl
 
 #### Scenario: Container is present on page
 
-- **WHEN** at least one toast has been queued during the current request and `wp_footer` has fired
+- **WHEN** at least one toast has been queued during the current request and `wp_body_open` and `wp_footer` have fired
 - **THEN** a fixed-position container with `role="status"` and `aria-live="polite"` is present in the DOM
 
 ### Requirement: Automatic late rendering
 
-The plugin SHALL emit the toaster block automatically on `wp_footer` at a late priority. Emission SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, emission SHALL be gated by the `wp-tosuto.api.render-empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
+The plugin SHALL render the toaster block automatically on `wp_body_open` at a late priority (buffering the output) and print the buffered markup on `wp_footer` at a late priority. This two-phase approach ensures block rendering triggers script/style enqueueing early enough while placing the container markup at the end of the body. Rendering SHALL be unconditional when the request-scoped toast queue is non-empty. When the queue is empty, rendering SHALL be gated by the `wp-tosuto.api.render-empty` filter, which SHALL default to `true`. Themes and consuming plugins SHALL NOT need to place the block by hand.
 
 The `wp-tosuto.api.render-empty` filter value SHALL be interpreted as follows:
 
@@ -23,25 +23,25 @@ The `wp-tosuto.api.render-empty` filter value SHALL be interpreted as follows:
 #### Scenario: Page with queued toast always renders container
 
 - **WHEN** a call to `wp_tosuto()` has queued at least one toast earlier in the request
-- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block exactly once regardless of the `wp-tosuto.api.render-empty` filter, and the resulting container is present in the rendered DOM
+- **THEN** on `wp_body_open` the plugin renders the `wp-tosuto/toaster` block exactly once regardless of the `wp-tosuto.api.render-empty` filter, and the buffered markup is printed on `wp_footer`, resulting in the container being present in the rendered DOM
 
 #### Scenario: Empty queue with default filter renders empty container
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
 - **AND** no code overrides the `wp-tosuto.api.render-empty` filter
-- **THEN** on `wp_footer` the plugin emits the `wp-tosuto/toaster` block, an empty container is present in the rendered DOM, and the `wp-tosuto` view script module and stylesheet are enqueued so runtime `actions.add()` calls can mount into it
+- **THEN** on `wp_body_open` the plugin renders the `wp-tosuto/toaster` block (buffered and printed on `wp_footer`), an empty container is present in the rendered DOM, and the `wp-tosuto` view script module and stylesheet are enqueued so runtime `actions.add()` calls can mount into it
 
 #### Scenario: Empty queue with filter set to false renders nothing
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
 - **AND** a filter on `wp-tosuto.api.render-empty` returns `false`
-- **THEN** the plugin does not emit the toaster block, no container element is present in the rendered DOM, and no `wp-tosuto` view script module or stylesheet is enqueued
+- **THEN** the plugin does not render the toaster block, no container element is present in the rendered DOM, and no `wp-tosuto` view script module or stylesheet is enqueued
 
 #### Scenario: Empty queue with template-tag callable filter
 
 - **WHEN** no call to `wp_tosuto()` happens during the request
 - **AND** a filter on `wp-tosuto.api.render-empty` returns the string `'is_singular'`
-- **THEN** the plugin invokes `is_singular()` with no arguments and, if it returns `true`, emits an empty container; if it returns `false`, emits nothing
+- **THEN** the plugin invokes `is_singular()` with no arguments and, if it returns `true`, renders an empty container; if it returns `false`, renders nothing
 
 ### Requirement: Single container instance
 
@@ -54,32 +54,27 @@ The plugin SHALL ensure only one toast container is rendered per page, even if a
 
 ### Requirement: Toast item rendering
 
-Each toast in `state.toasts` SHALL be rendered as a child element of the container. Each toast item SHALL display its `content` as HTML, apply a CSS class reflecting its `variant`, and include a dismiss button if `dismissable` is `true`.
+Each toast in `state.toasts` SHALL be rendered as a child element of the container via `data-wp-each="state.toastList"` (a computed getter that returns the Map values as an array). Each toast item SHALL display its `content` as HTML (written via `data-wp-watch="callbacks.renderContent"` which sets `innerHTML` on the content element), apply a `data-variant` attribute reflecting its `variant` (used by CSS attribute selectors for variant-specific styling), and include a dismiss button that is hidden when `dismissable` is `false`.
 
 #### Scenario: Toast displays content as HTML
 
 - **WHEN** a toast with `content: '<strong>Saved</strong> successfully'` is in the store
 - **THEN** the toast item renders the HTML content with the `<strong>` tag interpreted as markup
 
-#### Scenario: Toast applies variant class
+#### Scenario: Toast applies variant attribute
 
 - **WHEN** a toast with `variant: 'error'` is in the store
-- **THEN** the toast item element has a CSS class `wp-tosuto--error`
-
-#### Scenario: Dismissable toast apply dismissable class
-
-- **WHEN** a toast with `dismissable: true` is in the store
-- **THEN** the toast item element has a CSS class `wp-tosuto--dismissable`
+- **THEN** the toast item element has a `data-variant="error"` attribute, and CSS styles the item via `[data-variant="error"]` selectors
 
 #### Scenario: Dismissable toast shows close button
 
 - **WHEN** a toast with `dismissable: true` is in the store
-- **THEN** the toast item includes a close button with `aria-label="Dismiss notification"`
+- **THEN** the toast item includes a visible close button with `aria-label="Dismiss notification"`
 
 #### Scenario: Non-dismissable toast hides close button
 
 - **WHEN** a toast with `dismissable: false` is in the store
-- **THEN** the toast item does not include a close button
+- **THEN** the toast item's close button has the `hidden` attribute set, making it invisible and non-interactive
 
 ### Requirement: Content is sanitized before rendering
 
