@@ -2,7 +2,9 @@
 /.github/
 /vendor
 /node_modules
+/build/
 /dist/
+/website/
 *.config.js
 *.config.ts
 .prettierrc.js

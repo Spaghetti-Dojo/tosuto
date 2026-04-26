@@ -10,7 +10,7 @@ export class Timer {
 	readonly #startedAt: number;
 
 	public constructor(
-		handle: Handle | null,
+		handle: Readonly< Handle > | null,
 		remaining: number,
 		startedAt: number
 	) {

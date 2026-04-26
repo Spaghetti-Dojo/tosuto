@@ -1,5 +1,7 @@
 # WP Tosuto
 
+[![Deploy Docs](https://github.com/Spaghetti-Dojo/tosuto/actions/workflows/docs.yml/badge.svg)](https://github.com/Spaghetti-Dojo/tosuto/actions/workflows/docs.yml)
+
 A WordPress plugin that renders programmatic toast notifications via the [Interactivity API](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/), inspired by [shadcn/ui](https://ui.shadcn.com/).
 
 ## 📚 Documentation

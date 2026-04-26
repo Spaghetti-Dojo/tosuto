@@ -14,7 +14,7 @@ let timers = new TimerCollection();
 const { state, actions } = store( 'wp-tosuto', {
 	state: {
 		toasts: new Map< ToastId, Toast >(),
-		get toastList(): Array<Toast> {
+		get toastList(): Array< Toast > {
 			return Array.from( state.toasts.values() );
 		},
 	},
@@ -55,8 +55,8 @@ const { state, actions } = store( 'wp-tosuto', {
 		renderContent(): void {
 			const { ref } = getElement();
 			const { item } = getContext< { item: Toast } >();
-			const content = item?.content ?? '';
-			if ( ref && content) {
+			const content = item.content;
+			if ( ref && content ) {
 				ref.innerHTML = content;
 			}
 		},
