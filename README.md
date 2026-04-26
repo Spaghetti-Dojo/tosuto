@@ -4,9 +4,11 @@ A WordPress plugin that renders programmatic toast notifications via the [Intera
 
 ## 📚 Documentation
 
+Published: https://spaghetti-dojo.github.io/tosuto/
+
 - [Overview](docs/index.md)
-- [PHP API](docs/server/php-api.md) — `wp_tosuto()`, `wp_tosuto_remove()`, hooks, classes
-- [JavaScript / TypeScript API](docs/client/js-api.md) — Interactivity API store, actions, types, value objects
+- [PHP API](docs/server/php-api.md) — `wp_tosuto()`, `wp_tosuto_remove()`, hooks
+- [JavaScript / TypeScript API](docs/client/js-api.md) — Interactivity API store, actions, types
 
 ## 📋 Requirements
 

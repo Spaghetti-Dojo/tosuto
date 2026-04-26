@@ -1,3 +1,8 @@
+---
+slug: /
+sidebar_position: 1
+---
+
 # WP Tosuto — Documentation
 
 WP Tosuto is a WordPress plugin that renders programmatic toast notifications via the [WordPress Interactivity API](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/), inspired by [shadcn/ui](https://ui.shadcn.com/).

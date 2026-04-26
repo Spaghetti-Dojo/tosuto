@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # JavaScript / TypeScript API
 
 The client-side code is built with TypeScript and runs via the [WordPress Interactivity API](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/). All interactive behavior lives in the `wp-tosuto` store namespace.
