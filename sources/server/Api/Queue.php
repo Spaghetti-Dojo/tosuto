@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SpaghettiDojo\Tosuto\Api;
 
 /**
+ * @internal
  * @phpstan-type ToastEntry array{
  *     id: string,
  *     content: string,

@@ -1,4 +1,12 @@
-# Project Name
+# WP Tosuto
+
+A WordPress plugin that renders programmatic toast notifications via the [Interactivity API](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-interactivity/), inspired by [shadcn/ui](https://ui.shadcn.com/).
+
+## 📚 Documentation
+
+- [Overview](docs/index.md)
+- [PHP API](docs/server/php-api.md) — `wp_tosuto()`, `wp_tosuto_remove()`, hooks, classes
+- [JavaScript / TypeScript API](docs/client/js-api.md) — Interactivity API store, actions, types, value objects
 
 ## 📋 Requirements
 

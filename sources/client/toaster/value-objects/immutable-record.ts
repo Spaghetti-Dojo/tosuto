@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export class ImmutableRecord< T > {
 	readonly #map: Readonly< Record< string, T > >;
 

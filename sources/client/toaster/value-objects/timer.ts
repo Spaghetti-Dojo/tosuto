@@ -1,6 +1,9 @@
 /* eslint-disable max-classes-per-file -- Null Object pattern: Timer and its null counterpart are intrinsically paired and splitting them creates a circular dependency (Timer.start/pause/resume construct NullTimer, which extends Timer). */
 type Handle = ReturnType< typeof setTimeout >;
 
+/**
+ * @internal
+ */
 export class Timer {
 	readonly #handle: Handle | null;
 	readonly #remaining: number;

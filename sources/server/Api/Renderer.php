@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SpaghettiDojo\Tosuto\Api;
 
+/**
+ * @internal
+ */
 final class Renderer
 {
     private static string $output = '';

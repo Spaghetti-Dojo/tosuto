@@ -2,6 +2,9 @@ import DOMPurify from 'dompurify';
 
 import type { ToastId, ToastVariant, RawToast } from './types';
 
+/**
+ * @internal
+ */
 export class Toast {
 	public readonly id: ToastId;
 	public readonly content: string;

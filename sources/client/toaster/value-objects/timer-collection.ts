@@ -1,6 +1,9 @@
 import { ImmutableRecord } from './immutable-record';
 import { Timer, NullTimer } from './timer';
 
+/**
+ * @internal
+ */
 export class TimerCollection {
 	readonly #timers: ImmutableRecord< Timer >;
 	readonly #nullTimer = new NullTimer();

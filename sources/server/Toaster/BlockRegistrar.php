@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace SpaghettiDojo\Tosuto\Toaster;
 
+/**
+ * @internal
+ */
 final readonly class BlockRegistrar
 {
 	public static function new(): self
