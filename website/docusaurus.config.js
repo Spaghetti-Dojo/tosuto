@@ -50,7 +50,12 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ( {
-            navbar: {
+            colorMode: {
+            defaultMode: 'dark',
+            disableSwitch: false,
+            respectPrefersColorScheme: true,
+        },
+        navbar: {
                 title: 'WP Tosuto',
                 items: [
                     {
