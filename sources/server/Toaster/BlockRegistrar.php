@@ -22,9 +22,9 @@ final readonly class BlockRegistrar
 
 	private function register(): void
 	{
-		$buildDir = dirname( __DIR__, 3 ) . '/build';
+		$buildDir = dirname(__DIR__, 3) . '/build';
 
-		if ( ! is_dir( $buildDir ) ) {
+		if (!is_dir($buildDir)) {
 			return;
 		}
 

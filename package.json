@@ -40,9 +40,9 @@
 	},
 	"scripts": {
 		"env": "wp-env",
-		"start": "WP_SRC_DIRECTORY=sources/client wp-scripts start",
-		"build": "WP_SRC_DIRECTORY=sources/client wp-scripts build",
-		"build:dev": "WP_SRC_DIRECTORY=sources/client wp-scripts start",
+		"start": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts start",
+		"build": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts build",
+		"build:dev": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts start",
 		"lint:css": "wp-scripts lint-style",
 		"lint:css:fix": "wp-scripts lint-style --fix",
 		"lint:js": "wp-scripts lint-js",

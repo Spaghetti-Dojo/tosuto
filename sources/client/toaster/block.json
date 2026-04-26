@@ -9,7 +9,8 @@
 	"textdomain": "wp-tosuto",
 	"supports": {
 		"html": false,
-		"inserter": false
+		"inserter": false,
+		"interactivity": true
 	},
 	"attributes": {
 		"position": {
@@ -26,6 +27,6 @@
 		}
 	},
 	"viewScriptModule": "file:./view.js",
-	"style": "file:./style-index.css",
-	"render": "file:../../server/Toaster/render.php"
+	"style": "file:./style-view.css",
+	"render": "file:../../sources/server/Toaster/render.php"
 }

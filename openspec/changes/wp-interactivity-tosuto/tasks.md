@@ -48,7 +48,17 @@
 
 ## 6. Build & Verification
 
-- [ ] 6.1 Run `npx @wordpress/scripts build` to compile the Interactivity API module and CSS
-- [ ] 6.2 Verify the plugin activates without errors on a WordPress 6.9+ environment
-- [ ] 6.3 Test toast creation via PHP API (`wp_tosuto()`) and JS API (`store('wp-tosuto').actions.add()`)
-- [ ] 6.4 Test stacking, dismissal, auto-dismiss timer, hover pause, and variant styling
+- [x] 6.1 Run `npx @wordpress/scripts build` to compile the Interactivity API module and CSS
+- [x] 6.2 Verify the plugin activates without errors on a WordPress 6.9+ environment
+
+## 7. E2E Tests (Playwright + wp-env)
+
+- [ ] 7.1 Add `@wordpress/e2e-test-utils-playwright` and `@playwright/test` to devDependencies, create Playwright config pointing at wp-env
+- [ ] 7.2 Create a mu-plugin that queues test toasts via `wp_tosuto()` when a specific query param is present (e.g. `?tosuto-test=php`)
+- [ ] 7.3 E2E: PHP-queued toast is visible after page load with correct content and variant class
+- [ ] 7.4 E2E: JS `store('wp-tosuto').actions.add()` creates toast in DOM with correct content and variant class
+- [ ] 7.5 E2E: multiple toasts stack vertically
+- [ ] 7.6 E2E: dismiss button removes only the clicked toast
+- [ ] 7.7 E2E: toast auto-dismisses after duration
+- [ ] 7.8 E2E: hover pauses auto-dismiss, mouseleave resumes it
+- [ ] 7.9 E2E: variant classes (default, success, error, warning, info) render correctly

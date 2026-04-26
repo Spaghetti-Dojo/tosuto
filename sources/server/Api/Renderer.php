@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SpaghettiDojo\Tosuto\Api;
 
-final readonly class Renderer
+final class Renderer
 {
+    private static string $output = '';
+
     public static function new(): self
     {
         return new self();
@@ -17,7 +19,8 @@ final readonly class Renderer
 
     public function init(): void
     {
-        add_action('wp_footer', $this->render(...), PHP_INT_MAX);
+        add_action('wp_body_open', $this->render(...), PHP_INT_MAX);
+        add_action('wp_footer', $this->print(...), PHP_INT_MAX);
     }
 
     private function render(): void
@@ -31,7 +34,12 @@ final readonly class Renderer
         }
 
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- block renders its own output
-        echo do_blocks('<!-- wp:wp-tosuto/toaster /-->');
+        self::$output = do_blocks('<!-- wp:wp-tosuto/toaster /-->');
+    }
+
+    private function print(): void
+    {
+        echo self::$output;
     }
 
     /**

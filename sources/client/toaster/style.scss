@@ -2,17 +2,6 @@
 
 /* 4.2 — Custom properties */
 .wp-tosuto {
-	--wp-tosuto-bg: hsl(0deg 0% 100%);
-	--wp-tosuto-border: hsl(240deg 5.9% 90%);
-	--wp-tosuto-fg: hsl(240deg 10% 3.9%);
-	--wp-tosuto-font-size: #{units.rem(14)};
-	--wp-tosuto-gap: #{units.rem(8)};
-	--wp-tosuto-padding: #{units.rem(16)} #{units.rem(20)};
-	--wp-tosuto-radius: #{units.rem(8)};
-	--wp-tosuto-shadow: 0 #{units.rem(1)} #{units.rem(3)} 0 rgb(0 0 0 / 10%), 0 #{units.rem(1)} #{units.rem(2)} #{units.rem(-1)} rgb(0 0 0 / 10%);
-	--wp-tosuto-z-index: 100000;
-
-	/* 4.1 — Base container styles */
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column-reverse;
@@ -22,7 +11,18 @@
 	max-block-size: 100vb;
 	padding: units.rem(16);
 	pointer-events: none;
+
+	/* 4.1 — Base container styles */
 	position: fixed;
+	--wp-tosuto-bg: hsl(0deg 0% 100%);
+	--wp-tosuto-border: hsl(240deg 5.9% 90%);
+	--wp-tosuto-fg: hsl(240deg 10% 3.9%);
+	--wp-tosuto-font-size: #{units.rem(14)};
+	--wp-tosuto-gap: #{units.rem(8)};
+	--wp-tosuto-padding: #{units.rem(16)} #{units.rem(20)};
+	--wp-tosuto-radius: #{units.rem(8)};
+	--wp-tosuto-shadow: 0 #{units.rem(1)} #{units.rem(3)} 0 rgb(0 0 0 / 10%), 0 #{units.rem(1)} #{units.rem(2)} #{units.rem(-1)} rgb(0 0 0 / 10%);
+	--wp-tosuto-z-index: 100000;
 	z-index: var(--wp-tosuto-z-index);
 }
 
@@ -76,31 +76,31 @@
 }
 
 /* 4.3 — Variant styles */
-.wp-tosuto--default {
+.wp-tosuto__item[data-variant="default"] {
 	--wp-tosuto-bg: hsl(0deg 0% 100%);
 	--wp-tosuto-border: hsl(240deg 5.9% 90%);
 	--wp-tosuto-fg: hsl(240deg 10% 3.9%);
 }
 
-.wp-tosuto--error {
+.wp-tosuto__item[data-variant="error"] {
 	--wp-tosuto-bg: hsl(0deg 86% 97%);
 	--wp-tosuto-border: hsl(0deg 84% 60%);
 	--wp-tosuto-fg: hsl(0deg 74% 42%);
 }
 
-.wp-tosuto--info {
+.wp-tosuto__item[data-variant="info"] {
 	--wp-tosuto-bg: hsl(214deg 95% 97%);
 	--wp-tosuto-border: hsl(217deg 91% 60%);
 	--wp-tosuto-fg: hsl(221deg 83% 35%);
 }
 
-.wp-tosuto--success {
+.wp-tosuto__item[data-variant="success"] {
 	--wp-tosuto-bg: hsl(142deg 76% 96%);
 	--wp-tosuto-border: hsl(142deg 69% 58%);
 	--wp-tosuto-fg: hsl(143deg 64% 24%);
 }
 
-.wp-tosuto--warning {
+.wp-tosuto__item[data-variant="warning"] {
 	--wp-tosuto-bg: hsl(48deg 96% 95%);
 	--wp-tosuto-border: hsl(36deg 77% 49%);
 	--wp-tosuto-fg: hsl(25deg 95% 27%);
