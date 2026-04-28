@@ -43,6 +43,7 @@ yarn.lock
 /.wp-env/
 
 # Testing
+artifacts/
 /coverage/
 /.phpunit.cache/
 coverage.xml
