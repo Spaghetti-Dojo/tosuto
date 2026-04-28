@@ -53,12 +53,12 @@
 
 ## 7. E2E Tests (Playwright + wp-env)
 
-- [ ] 7.1 Add `@wordpress/e2e-test-utils-playwright` and `@playwright/test` to devDependencies, create Playwright config pointing at wp-env
-- [ ] 7.2 Create a mu-plugin that queues test toasts via `wp_tosuto()` when a specific query param is present (e.g. `?tosuto-test=php`)
-- [ ] 7.3 E2E: PHP-queued toast is visible after page load with correct content and variant class
-- [ ] 7.4 E2E: JS `store('wp-tosuto').actions.add()` creates toast in DOM with correct content and variant class
-- [ ] 7.5 E2E: multiple toasts stack vertically
-- [ ] 7.6 E2E: dismiss button removes only the clicked toast
-- [ ] 7.7 E2E: toast auto-dismisses after duration
-- [ ] 7.8 E2E: hover pauses auto-dismiss, mouseleave resumes it
-- [ ] 7.9 E2E: variant classes (default, success, error, warning, info) render correctly
+- [x] 7.1 Add `@wordpress/e2e-test-utils-playwright` and `@playwright/test` to devDependencies, create Playwright config pointing at wp-env
+- [x] 7.2 Create a mu-plugin that queues test toasts via `wp_tosuto()` when a specific query param is present (e.g. `?tosuto-test=php`)
+- [x] 7.3 E2E: PHP-queued toast is visible after page load with correct content and variant class
+- [x] 7.4 E2E: JS `store('wp-tosuto').actions.add()` creates toast in DOM with correct content and variant class
+- [x] 7.5 E2E: multiple toasts stack vertically
+- [x] 7.6 E2E: dismiss button removes only the clicked toast
+- [x] 7.7 E2E: toast auto-dismisses after duration
+- [x] 7.8 E2E: hover pauses auto-dismiss, mouseleave resumes it
+- [x] 7.9 E2E: variant classes (default, success, error, warning, info) render correctly

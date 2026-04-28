@@ -25,10 +25,12 @@
 		"react": "^19.0.0"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.59.1",
 		"@types/node": "^24.0.0",
 		"@types/react": "^19.0.0",
 		"@types/react-dom": "^19.0.0",
 		"@types/webpack": "^5.28.5",
+		"@wordpress/e2e-test-utils-playwright": "^1.44.0",
 		"@wordpress/env": "^10.39.0",
 		"@wordpress/prettier-config": "^4.39.0",
 		"@wordpress/scripts": "^31.4.0",
@@ -39,7 +41,7 @@
 		"typescript": "~5.9.0"
 	},
 	"scripts": {
-		"env": "wp-env",
+		"wp-env": "wp-env",
 		"start": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts start",
 		"build": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts build",
 		"build:dev": "WP_SOURCE_PATH=sources/client WP_EXPERIMENTAL_MODULES=true WP_BLOCKS_MANIFEST=true wp-scripts start",
@@ -47,6 +49,8 @@
 		"lint:css:fix": "wp-scripts lint-style --fix",
 		"lint:js": "wp-scripts lint-js",
 		"lint:js:fix": "wp-scripts lint-js --fix",
-		"format": "wp-scripts format"
+		"format": "wp-scripts format",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui"
 	}
 }

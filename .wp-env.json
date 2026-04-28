@@ -7,7 +7,12 @@
 	"plugins": [
 		".",
 		"https://downloads.wordpress.org/plugin/query-monitor.3.16.4.zip"
-	],
+	  ],
+	"mappings": {
+		"wp-content/mu-plugins": "./tests/e2e/mu-plugins"
+	},
+	"port": 8877,
+	"testsPort": 8878,
 	"config": {
 		"WP_DEBUG": true,
 		"WP_ENVIRONMENT_TYPE": "local",

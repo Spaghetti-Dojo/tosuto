@@ -18,6 +18,9 @@ importers:
         specifier: ^19.0.0
         version: 19.2.5
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.59.1
+        version: 1.59.1
       '@types/node':
         specifier: ^24.0.0
         version: 24.12.2
@@ -30,6 +33,9 @@ importers:
       '@types/webpack':
         specifier: ^5.28.5
         version: 5.28.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack-dev-server@4.15.2)(webpack@5.106.2))
+      '@wordpress/e2e-test-utils-playwright':
+        specifier: ^1.44.0
+        version: 1.44.0(@playwright/test@1.59.1)(@types/node@24.12.2)
       '@wordpress/env':
         specifier: ^10.39.0
         version: 10.39.0(@types/node@24.12.2)
