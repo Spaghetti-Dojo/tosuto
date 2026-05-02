@@ -1,5 +1,5 @@
 ---
-name: github-commits
+name: github-commit
 description: Explain how to properly perform a git commit. Title, body text generation and constraints
 ---
 
