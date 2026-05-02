@@ -8,9 +8,9 @@ case "$FILE" in
     composer cs && composer analysis
     ;;
   *.ts|*.tsx|*.js|*.jsx)
-    pnpm lint:js
+    pnpm lint:scripts
     ;;
   *.scss|*.css)
-    pnpm lint:css
+    pnpm lint:styles
     ;;
 esac

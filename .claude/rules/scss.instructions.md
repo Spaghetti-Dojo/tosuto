@@ -1,6 +1,6 @@
 ---
 paths:
-  - "sources/client/**/*.scss"
+    - 'sources/client/**/*.scss'
 ---
 
 ## Project Conventions
@@ -10,6 +10,18 @@ paths:
 ## Scss Conventions
 
 - Use `mixins.units.rem` or `mixins.units.em` rather than `px` for font sizes, spacing, and other properties that should scale with the user's settings.
+
+## Organization
+
+SCSS is organized atomically:
+
+- `atoms/` — basic elements (buttons, inputs, typography)
+- `molecules/` — component combinations
+- `organisms/` — complex compositions
+- `templates/` - page layouts
+- `pages/` - specific page styles
+- `block-styles/` — block-specific overrides
+- `mixins/` — reusable SCSS mixins
 
 ## Coding Style
 

@@ -7,10 +7,11 @@ paths:
 
 The following instructions are applicable to all php files in this repository.
 
-## Requirements
+### Server Architecture
 
-- PHP 8.4 or higher
-- WordPress 6.9 or higher
+The project uses `inpsyde/modularity` for dependency injection. `/index.php` bootstraps via `boot()` at `plugins_loaded`, which calls `/inc/package.php` to register five modules:
+
+Each module has a `Module.php` implementing the Modularity contract, with additional classes for specific concerns.
 
 ## Core Architectural Principles
 
@@ -119,10 +120,3 @@ use Vendor\Package\{
 	Namespace\SubNamespace\ClassC
 };
 ```
-
-## Class Methods
-
-- Prefer early returns to reduce nesting and improve readability
-- Prefer one condition per `if` statement for clarity, even if you have to create multipe `if` statements instead of combining conditions with `&&` or `||`. But apply this logically, if conditions are closely related because belonging to the same scope, it canbe fine.
-- When a method has multiple responsibilities, consider extracting private methods to handle specific tasks
-- Keep public methods focused on orchestrating behavior, while private methods handle the details of specific operations
