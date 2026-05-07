@@ -2,12 +2,17 @@
 set -uo pipefail
 
 errors=0
+failed_step=""
 
 run_step() {
+  if [[ $errors -ne 0 ]]; then
+    return
+  fi
+
   local label="$1"
   shift
   if ! "$@" 2>&1; then
-    echo "FAIL: ${label}"
+    failed_step="$label"
     errors=1
   fi
 }
@@ -29,6 +34,10 @@ fi
 if find sources/client -name '*.scss' -o -name '*.css' -print -quit 2>/dev/null | grep -q .; then
   run_step "styles:fix"   pnpm lint:styles:fix
   run_step "styles"       pnpm lint:styles
+fi
+
+if [[ $errors -ne 0 ]]; then
+  echo "QA failed at step: ${failed_step}. Fix issues before continuing."
 fi
 
 exit $errors
